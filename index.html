@@ -1,20 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Handleliste</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Tilfeldig dyr-generator</h1>
-    <input type="button" value="Vis tilfeldig dyr" id="show-btn">
+    <input type="button" value="Vis tilfeldig dyr" id="show-btn" />
     <div id="animals-container"></div>
     <script>
-        const showBtn = document.querySelector("#show-btn");
-        const animalsContainer = document.querySelector("#animals-container")
-    </script>
-</body>
+      const showBtn = document.querySelector("#show-btn");
+      const animalsContainer = document.querySelector("#animals-container");
 
+      let animalsArray = [
+        {
+          name: "Monstero",
+          imageUrl: "monster1.png",
+        },
+        {
+          name: "Noldus",
+          imageUrl: "monster2.png",
+        },
+        {
+          name: "Poppers",
+          imageUrl: "monster3.png",
+        },
+        {
+          name: "Blåtann",
+          imageUrl: "monster4.png",
+        },
+        {
+          name: "Suppert",
+          imageUrl: "monster5.png",
+        },
+      ];
+
+      showBtn.addEventListener("click", getRandomAnimal);
+
+      function getRandomAnimal() {
+        let randomAnimal = Math.floor(Math.random() * animalsArray.length);
+
+        createAnimalCard(animalsArray[randomAnimal]);
+      }
+
+      function createAnimalCard(animal) {
+        const animalContainer = document.createElement("div");
+        animalContainer.style.backgroundColor = generateRandomColor();
+        const animalImage = document.createElement("img");
+        animalImage.src = `assets/${animal.imgUrl}`;
+        animalImage.style.width = "100px";
+        const animalName = document.createElement("hi1");
+        animalName.innerHTML = "monsteret sitt navn";
+
+        animalContainer.append(animalImage, animalName);
+        animalsContainer.append(animalContainer);
+      }
+
+      function generateRandomColor() {
+        const r = Math.floor(Math.random() * 255);
+        const g = Math.floor(Math.random() * 255);
+        const b = Math.floor(Math.random() * 255);
+
+        return `rgb(${r},${g},${b})`
+      }
+
+      console.log(animalsArray);
+    </script>
+  </body>
 </html>
